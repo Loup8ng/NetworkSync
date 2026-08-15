@@ -1,0 +1,55 @@
+# =========================================
+#  NetworkSync - Configuration
+# =========================================
+
+server-id: "SMP-1"
+
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  database: "networksync"
+  username: "networksync"
+  password: "changeme"
+  useSSL: false
+  pool-size: 10
+  connection-timeout-ms: 5000
+
+sync:
+  enabled: true
+  # Délai maximum avant écriture du changement (micro-batching)
+  flush-delay-ms: 50
+  # Sauvegarde immédiate lors du changement de serveur
+  save-on-server-switch: true
+  # Sauvegarde immédiate à la déconnexion
+  save-on-quit: true
+
+backups:
+  enabled: true
+  # Intervalle des snapshots automatiques (secondes)
+  interval-seconds: 30
+  # Ne crée un backup que si le joueur est marqué "dirty"
+  only-if-changed: true
+  # Nombre de backups conservés par joueur (rotation)
+  keep: 20
+  on-server-switch: true
+  on-quit: true
+  before-restore: true
+  before-admin-action: true
+
+session:
+  # Timeout (secondes) avant qu'un verrou de session soit considéré comme mort
+  # (ex: crash du serveur A) et puisse être repris par le serveur B
+  heartbeat-interval-seconds: 5
+  lock-timeout-seconds: 15
+
+economy:
+  enabled: true
+  # Vérifie la cohérence du solde Vault après chargement des données synchronisées
+  verify-balance-on-load: true
+
+anti-duplication:
+  enabled: true
+  # Refuse toute écriture dont la revision est <= revision déjà connue en base
+
+logging:
+  debug: false

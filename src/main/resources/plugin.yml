@@ -1,0 +1,27 @@
+name: NetworkSync
+version: '${project.version}'
+main: com.networksync.plugin.NetworkSyncPlugin
+api-version: '1.21'
+author: NetworkSync
+description: Synchronisation multi-serveurs des inventaires, EnderChest, XP et économie via MySQL, avec backups, snapshots et anti-duplication.
+softdepend: [Vault, Essentials]
+
+commands:
+  sync:
+    description: Commande principale de NetworkSync
+    usage: /sync <backup|backups|restore|rollback|economy-history|status> [joueur] [id]
+    permission: sync.admin
+
+permissions:
+  sync.admin:
+    description: Accès complet aux commandes admin de NetworkSync
+    default: op
+  sync.backup:
+    description: Autorise la création manuelle de backups
+    default: op
+  sync.restore:
+    description: Autorise la restauration de backups
+    default: op
+  sync.view:
+    description: Autorise la consultation des backups/historique
+    default: op
